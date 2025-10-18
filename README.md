@@ -1,5 +1,5 @@
 # data_visualization
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OW9-ystdTEsxxBhFr6E3YlyzfKJ3k046)
 
 ## 프로젝트 개요
