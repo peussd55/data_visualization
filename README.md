@@ -1,3 +1,62 @@
 # data_visualization
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_USERNAME/YOUR_REPOSITORY/blob/main/path/to/your/notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OW9-ystdTEsxxBhFr6E3YlyzfKJ3k046)
+
+## 프로젝트 개요
+국가통계포털(KOSIS)에서 제공하는 2016년 행정구역별 인구 데이터를 활용하여 대한민국의 인구 구조를 다양한 방식으로 시각화한 Colab 노트북입니다. `pandas`로 데이터를 정제하고 `matplotlib`, `seaborn`, `folium`을 조합해 연령대·성별 구성비를 탐색하며, 격자지도와 행정구역 경계 기반의 지도를 통해 공간적 패턴을 파악할 수 있습니다.
+
+## 주요 기능
+- **연령대 인구 피라미드**: 선택한 시·군·구를 기준으로 연령대별 남녀 인구 분포를 좌우형 막대그래프로 가시화합니다.
+- **인구 구조 유사도 탐색**: 특정 지역과 연령대별 인구 비중이 유사한 타 지역을 코사인 유사도로 계산해 추천합니다.
+- **격자 지도(Heatmap)**: `draw_korea.csv`의 좌표계를 활용해 전국 시·군·구를 격자 형태로 배치하고, 고령화 지수 등 파생 지표를 색상으로 표현합니다.
+- **행정구역 경계 Choropleth**: `skorea_municipalities_geo_simple.json` GeoJSON과 결합해 `folium` 기반의 인터랙티브 지도를 제공하며, 마우스 오버 시 지역명과 지표를 확인할 수 있습니다.
+- **상호작용형 필터**: Colab 환경의 위젯을 통해 관심 지역, 연령 구간, 지표(총인구, 남녀 비중, 노령화 지수 등)를 선택적으로 탐색합니다.
+
+## 데이터셋
+| 파일명 | 설명 |
+| --- | --- |
+| `population_raw_data.xlsx` | 2016년 행정구역별 총인구·남녀 인구 및 20세 이상 연령대별 인구 수 |
+| `draw_korea.csv` | 시·군·구를 2차원 격자에 배치하기 위한 좌표 테이블 |
+| `draw_korea_raw.xlsx` | 격자 지도 생성 시 참고용 원본 좌표 데이터 |
+| `skorea_municipalities_geo_simple.json` | 전국 기초자치단체 경계를 담은 간략화된 GeoJSON |
+
+## 분석 파이프라인
+1. **데이터 로딩 및 정제**
+   - `pandas`로 엑셀 원본을 불러와 행정구역·항목·연령대 열을 정리하고, 필요에 따라 Wide ↔ Long 형태로 재구조화합니다.
+   - 결측값을 보정하고 행정구역 이름을 통일해 격자 좌표와 GeoJSON 키 값과의 매칭을 준비합니다.
+2. **지표 계산**
+   - 연령대별 비중, 남녀 비율, 고령화 지수(65세 이상 / 0~14세), 유소년 지수 등을 계산해 파생 컬럼을 생성합니다.
+   - 지역 간 유사도 탐색을 위해 연령 비중 벡터를 정규화하고 코사인 유사도를 미리 산출합니다.
+3. **시각화 생성**
+   - `matplotlib`/`seaborn`으로 인구 피라미드와 분포 그래프를 그립니다.
+   - `draw_korea` 데이터를 이용한 격자 지도는 `pcolor` 기반 히트맵으로 표현하며, 행정구역 명칭을 격자 중앙에 배치합니다.
+   - GeoJSON과 결합한 `folium.Choropleth`로 인터랙티브 지도를 생성하고, 팝업/툴팁을 통해 상세 정보를 제공합니다.
+4. **대화형 탐색**
+   - Colab 노트북에서 `ipywidgets`를 활용해 사용자 입력(관심 지역, 유사도 상위 N개 등)을 받고 그래프를 동적으로 업데이트합니다.
+
+## 노트북 구조
+```text
+01. 데이터 로딩 및 전처리
+02. 연령대 인구 구조 탐색 (피라미드, 분포 그래프)
+03. 인구 구조 유사도 분석
+04. draw_korea 격자 지도 시각화
+05. GeoJSON 기반 Choropleth 작성
+06. 결론 및 추가 실험 아이디어
+```
+
+## 실행 방법
+Colab에서 실행할 경우 추가 설정 없이 런타임을 시작하면 되며, 로컬 환경에서 동일한 분석을 반복하려면 아래 절차를 따르면 됩니다.
+
+1. 저장소를 클론하고 가상환경을 생성합니다.
+2. 필수 패키지를 설치합니다.
+   ```bash
+   pip install pandas numpy matplotlib seaborn folium geopandas shapely
+   ```
+3. `notebook.ipynb`(또는 Colab 노트북을 다운로드한 파일)를 실행해 셀을 순차적으로 실행합니다.
+4. 생성된 `folium` 지도는 HTML 파일로 저장하거나, 노트북 안에서 직접 확인할 수 있습니다.
+
+## 기대 효과 및 확장 아이디어
+- **정책 기획 지원**: 고령화가 진행 중인 지역을 빠르게 파악해 정책 우선순위를 조정할 수 있습니다.
+- **맞춤형 서비스 기획**: 연령 구조가 유사한 지역을 묶어 서비스 타깃팅에 활용할 수 있습니다.
+- **데이터 확장**: 다른 연도 또는 성별·외국인 인구 등 추가 지표를 결합해 시계열 분석으로 확장할 수 있습니다.
+- **자동 리포팅**: 주요 그래프를 PNG/HTML로 저장해 정기 보고서 자동화에 적용할 수 있습니다.
