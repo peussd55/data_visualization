@@ -2,6 +2,11 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OW9-ystdTEsxxBhFr6E3YlyzfKJ3k046)
 
+## 👥 참여인원 (Member)
+<p>
+  <img src="https://img.shields.io/badge/개발%20(Development)-1명-3776AB?style=flat-square&logo=github&logoColor=white">
+</p>
+
 ## 프로젝트 개요
 국가통계포털(KOSIS)에서 제공하는 2016년 행정구역별 인구 데이터를 활용하여 대한민국의 인구 구조를 다양한 방식으로 시각화한 Colab 노트북입니다. `pandas`로 데이터를 정제하고 `matplotlib`, `seaborn`, `folium`을 조합해 연령대·성별 구성비를 탐색하며, 격자지도와 행정구역 경계 기반의 지도를 통해 공간적 패턴을 파악할 수 있습니다.
 
