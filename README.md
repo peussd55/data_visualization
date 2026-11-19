@@ -2,14 +2,22 @@
 
 시 · 군 · 구별 인구 데이터로 인구 소멸 위기 지역을 계산하고 지도로 그린 실습입니다.
 
-책 『파이썬으로 데이터 주무르기』 5장의 예제를 따라 구현했습니다. 예제 코드와 데이터는 책의 공개 저장소([PinkWink/DataScience](https://github.com/PinkWink/DataScience))에 있습니다. 책의 코드를 지금 버전의 라이브러리로 돌리면 오류나 지원 중단 경고가 나는 곳이 있어 그 부분을 고쳤습니다(예: `fillna(method='pad')` → `ffill()`, `map.choropleth()` → `folium.Choropleth()`).
+책 『파이썬으로 데이터 주무르기』 5장의 예제를 따라 구현했습니다. 예제 코드와 데이터는 책의 공개 저장소([PinkWink/DataScience](https://github.com/PinkWink/DataScience))에 있습니다. 책의 코드를 지금 버전의 라이브러리로 돌리면 오류나 deprecated 경고가 나는 곳이 있어 그 부분을 고쳤습니다(예: `fillna(method='pad')` → `ffill()`, `map.choropleth()` → `folium.Choropleth()`).
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OW9-ystdTEsxxBhFr6E3YlyzfKJ3k046)
 
-| 소멸 위기 지역 | 20~39세 여성 비율 | 인구수 |
-|---|---|---|
-| ![소멸 위기 지역 격자 지도](images/extinction_risk.png) | ![20~39세 여성 비율 격자 지도](images/women_ratio_20_39.png) | ![인구수 격자 지도](images/population_total.png) |
-| 짙은 칸이 소멸 위기 지역 | 붉을수록 20~39세 가운데 여성이 적은 곳 | 짙을수록 인구가 많은 곳 |
+<p align="center">
+  <img src="images/extinction_risk.png" width="460" alt="소멸 위기 지역 격자 지도">
+</p>
+
+소멸 위기 지역입니다. 짙은 칸이 소멸 비율 1.0 미만인 시 · 군 · 구입니다.
+
+<p align="center">
+  <img src="images/women_ratio_20_39.png" width="48%" alt="20~39세 여성 비율 격자 지도">
+  <img src="images/population_total.png" width="48%" alt="인구수 격자 지도">
+</p>
+
+왼쪽은 20~39세 가운데 여성의 비율(붉을수록 여성이 적은 곳), 오른쪽은 인구수(짙을수록 많은 곳)입니다.
 
 ## 하는 일
 
