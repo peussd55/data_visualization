@@ -7,10 +7,16 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1OW9-ystdTEsxxBhFr6E3YlyzfKJ3k046)
 
 <p align="center">
+  <img src="images/extinction_risk_map.png" width="700" alt="소멸 위기 지역 단계구분도">
+</p>
+
+소멸 위기 지역을 실제 지도 위에 그린 단계구분도입니다. 짙은 곳이 소멸 위기 지역입니다. 배경 지도 © Esri.
+
+<p align="center">
   <img src="images/extinction_risk.png" width="460" alt="소멸 위기 지역 격자 지도">
 </p>
 
-소멸 위기 지역입니다. 짙은 칸이 소멸 비율 1.0 미만인 시 · 군 · 구입니다.
+같은 소멸 위기 지역을 격자 지도로 그린 것입니다. 짙은 칸이 소멸 비율 1.0 미만인 시 · 군 · 구입니다.
 
 <p align="center">
   <img src="images/women_ratio_20_39.png" width="48%" alt="20~39세 여성 비율 격자 지도">
@@ -24,7 +30,7 @@
 1. **데이터 정리** — 행정구역별 인구 엑셀을 읽어 빈 칸을 채우고, 연령대를 20~39세와 65세 이상으로 묶어 지역별 피벗 테이블로 만듭니다.
 2. **소멸 위기 지역 판정** — 소멸 비율 = 20~39세 여성 인구 ÷ (65세 이상 인구 ÷ 2). 이 값이 1.0보다 작으면 소멸 위기 지역으로 표시합니다.
 3. **격자 지도** — 시 · 군 · 구를 같은 크기의 칸으로 놓은 지도에 인구수, 소멸 위기 지역, 여성 비율, 20~39세 여성 비율을 색으로 그립니다. 광역 경계선은 좌표 목록으로 직접 그립니다.
-4. **단계구분도** — 행정구역 경계 GeoJSON과 folium으로 인구수와 소멸 위기 지역을 실제 지도 위에 그립니다. 이 지도는 노트북을 실행해야 보입니다.
+4. **단계구분도** — 행정구역 경계 GeoJSON과 folium으로 인구수와 소멸 위기 지역을 실제 지도 위에 그립니다. 움직이는 지도는 노트북을 실행해야 보이고, 위 그림은 그 화면을 찍은 것입니다.
 
 ## 파일
 
@@ -35,7 +41,7 @@
 | `draw_korea_raw.xlsx` | 격자 지도의 칸 배치 원본 |
 | `draw_korea.csv` | 위 배치를 지역 이름과 좌표(x, y)로 풀어 저장한 것 |
 | `skorea_municipalities_geo_simple.json` | 시 · 군 · 구 경계 GeoJSON |
-| `images/` | README에 넣은 격자 지도 세 장 |
+| `images/` | README에 넣은 격자 지도 세 장과 단계구분도 한 장 |
 
 데이터 파일은 책의 공개 저장소에서 받은 것입니다.
 
